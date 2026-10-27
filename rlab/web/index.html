@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reward Training Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Reward Training Lab</h1>
+  <div id="runs"></div>
+  <div id="status"></div>
+</header>
+
+<section id="timeline">
+  <button id="play" title="Play / pause (space)">▶</button>
+  <input id="frame" type="range" min="0" max="0" value="0">
+  <span id="tlabel">t = 0</span>
+  <label class="speed">speed <select id="speed"><option value="1">1×</option><option value="2" selected>2×</option><option value="5">5×</option><option value="10">10×</option></select></label>
+</section>
+
+<main>
+  <div class="panel" id="p-input">
+    <div class="ptitle">Input space <span class="sub" id="input-sub"></span></div>
+    <canvas id="c-input"></canvas>
+    <div class="toggles">
+      <label><input type="checkbox" data-opt="halo" checked> gradient push (halo)</label>
+      <label><input type="checkbox" data-opt="arrows" checked> per-sample pull on θ</label>
+      <label><input type="checkbox" data-opt="maxmargin" checked> max-margin separator</label>
+      <label><input type="checkbox" data-opt="neurons" checked> neurons (MLP)</label>
+    </div>
+    <div class="tip" id="tip"></div>
+  </div>
+
+  <div class="panel" id="p-weights">
+    <div class="ptitle">Weight space <span class="sub" id="weights-sub"></span></div>
+    <canvas id="c-weights"></canvas>
+    <div class="toggles">
+      <span id="dimsel"></span>
+      <label><input type="checkbox" data-opt="predicted" checked> θ̂ log t + θ̃</label>
+      <label><input type="checkbox" data-opt="gradarrow" checked> −∇L and update</label>
+      <label><input type="checkbox" data-opt="normalize"> normalize θ/‖θ‖</label>
+    </div>
+  </div>
+
+  <div class="panel wide" id="p-charts">
+    <div class="ptitle">Training dynamics <span class="sub">click a chart to jump in time</span></div>
+    <div id="charts"></div>
+  </div>
+</main>
+<!--DATA-->
+<script src="charts.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
